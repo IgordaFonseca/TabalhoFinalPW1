@@ -8,29 +8,42 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <title>Trabalho Final PW1</title>
     <style>
-        .navbar{
-            padding-top: 20px;
-            padding-left: 20px;
+        .div_esquerda{
+            float: left;
+        }
+        .div_direita{
+            float: left;
         }
     </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="select">
-            <select>
-                <option value="" disabled selected hidden>Pacientes</option>
-                <option><button id="listarPacientes">Listar</button></option>
-                <option><button id="CadastrarPaciente">Cadastrar</button></option>
-            </select>
+    <div class="div_esquerda navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+            Pacientes
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item">
+            Listar pacientes
+          </a>
+          <a class="navbar-item">
+            Cadastrar paciente
+          </a>
         </div>
-        <div class="select">
-            <select>
-                <option value="" disabled selected hidden>Medicos</option>
-                <option>Listar</option>
-                <option>Cadastrar</option>
-            </select>
+    </div>
+    <div class="div_direita navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+            Medicos
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item">
+            Listar Medicos
+          </a>
+          <a class="navbar-item">
+            Cadastrar Medico
+          </a>
         </div>
         <button class="adicionarConsulta button is-link">Adicionar Consulta</button>
-    </nav>
+    </div>
+    <script src="index.js"></script>
 </body>
 </html>
