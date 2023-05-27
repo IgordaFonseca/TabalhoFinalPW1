@@ -58,5 +58,43 @@ function listarPacientes(){
         });
 }
 
+function cadastarPaciente(){
+    let body = document.querySelector("body");
+    let titulo = document.createElement("h2"); 
+    let form = document.createElement("forms");
+    let divNome = document.createElement("div");
+    divNome.classList.add("field");
+    let labelNome = document.createElement("label");
+    labelNome.classList.add("label");
+    labelNome.innerHTML="Nome";
+    let divControNome = document.createElement("div");
+    divControNome.classList.add("control");
+    let inputNome = document.createElement("input");
+    inputNome.classList.add("input");
+    inputNome.type="text;"
+    divControNome.append(inputNome);
+    divNome.append(labelNome,divControNome);
+
+    let divDataNascimento = document.createElement("div");
+    divDataNascimento.classList.add("field");
+    let labelDataNascimento = document.createElement("label");
+    labelDataNascimento.classList.add("label");
+    labelDataNascimento.innerHTML="Data de Nascimento";
+    let divControDataNascimento = document.createElement("div");
+    divControDataNascimento.classList.add("control");
+    let dateDataNascimento = document.createElement("input");
+    dateDataNascimento.classList.add("input");
+    dateDataNascimento.type="date";
+    divControDataNascimento.append(dateDataNascimento);
+    divDataNascimento.append(labelDataNascimento,divControDataNascimento);
+
+    form.append(divNome,divDataNascimento);
+    body.append(form);
+
+}
+
 let botaoListarPacientes = document.querySelector(".listarPacientes");
 botaoListarPacientes.addEventListener("click",listarPacientes);
+
+let botaoCadastrarPaciente = document.querySelector(".cadastrarPaciente");
+botaoCadastrarPaciente.addEventListener("click",cadastarPaciente);
