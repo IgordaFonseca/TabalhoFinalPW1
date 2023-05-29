@@ -126,23 +126,26 @@ function listarMedicos(){
             tnome.innerHTML="Nome";
             let tDataCadastro = document.createElement("td");
             tDataCadastro.innerHTML="Data de cadastro";
+            let espcialidade = document.createElement("td");
+            espcialidade.innerHTML="espcialidade";
             let acoes = document.createElement("td");
-            acoes.innerHTML="Especialidade";
+            acoes.innerHTML="Ações";
 
-            cabecalho.append(tnome,tDataCadastro,acoes);        
+            cabecalho.append(tnome,tDataCadastro,espcialidade, acoes);        
             tabela.append(nomeTabela,cabecalho);
             body.append(tabela);
             
 
-            /*for(let paciente of dados){
-                let linhaPaciente = document.createElement("tr");
+            for(let medico of dados){
+                let linhaMedico = document.createElement("tr");
                 let nome = document.createElement("td");
-                nome.innerHTML=paciente.nome;
-                let dataNascimento = document.createElement("td");
-                dataNascimento.innerHTML=paciente.dataNascimento;
+                nome.innerHTML=medico.nome;
                 let dataCadastro = document.createElement("td");
-                dataCadastro.innerHTML=paciente.dataCadastro;
+                dataCadastro.innerHTML=medico.dataCadastro;
+                let medicoEspecialidade = document.createElement("td");
+                medicoEspecialidade.innerHTML=retornarEspecialidade(medico.id)
                 let opcoes = document.createElement("td");
+                
 
                 // precisa fazer os eventos listners dos botões
                 let botaoVerConsultas = document.createElement("button");
@@ -156,13 +159,37 @@ function listarMedicos(){
                 botaoDeletar.innerHTML="Deletar"
 
                 opcoes.append(botaoVerConsultas,botaoEditar,botaoDeletar);
-                linhaPaciente.append(nome, dataNascimento, dataCadastro, opcoes);
-                tabela.append(linhaPaciente);
-            }*/
+                linhaMedico.append(nome, dataCadastro,medicoEspecialidade, opcoes);
+                tabela.append(linhaMedico);
+            }
         })
         .catch(erro =>{
             console.error("Erro encontrado: ",erro);
         });
+}
+function retornarEspecialidade(id){
+    let requisicaoId = id;
+    let especilaidadeResultado;
+    fetch("https://ifsp.ddns.net/webservices/clinicaMedica/especialidades")
+    .then(resposta =>{
+        if(!resposta.ok){
+            throw new Error("Houve algum erro"); 
+        }
+        return resposta.json();
+    })
+    .then(dados =>{
+        for(espcialidade of dados){
+            let dadosId = espcialidade.id;
+            if(requisicaoId == dadosId){
+                especilaidadeResultado = espcialidade.nome;
+            }
+        }
+        return especilaidadeResultado;  
+    })
+    .catch(erro =>{
+        console.error("Erro encontrado: ",erro);
+    });
+    
 }
 
 let botaoListarPacientes = document.querySelector(".listarPacientes");
